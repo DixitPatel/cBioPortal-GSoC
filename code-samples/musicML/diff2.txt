@@ -1,0 +1,7 @@
+Chord {D in octave 5 | C in octave 4 | E in octave 6 | A in octave 6 | A in octave 5 | D in octave 6} Quarter tied to 16th (1 1/4 total QL),A6-perfect-fourth minor tetrachord,1.25,8.0
+Chord {G in octave 3 | A in octave 3} Half Tuplet of 6/5ths (1 2/3 QL),A3-interval class 2,5/3,9.666666666666666
+Chord {A in octave 3 | C-sharp in octave 4 | E in octave 5} Dotted Eighth,A3-major triad,0.75,14.0
+Chord {E-flat in octave 5 | C-sharp in octave 5} Dotted Eighth,C#5-interval class 2,0.75,22.0
+Chord {G in octave 4 | A in octave 3 | A in octave 5} 16th,A3-interval class 2,0.25,23.0
+Chord {F in octave 4 | D in octave 4 | B in octave 3 | G-sharp in octave 5 | B in octave 5 | D in octave 6} 16th,G#5-diminished seventh chord,0.25,27.666666666666668
+Chord {C in octave 4 | E in octave 4 | G in octave 4 | A in octave 3 | G in octave 5 | A in octave 5} Half Triplet (1 1/3 QL),A3-minor seventh chord,4/3,72.0
