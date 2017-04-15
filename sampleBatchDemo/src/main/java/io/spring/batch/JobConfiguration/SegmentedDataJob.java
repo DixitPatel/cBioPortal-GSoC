@@ -18,8 +18,10 @@ import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.MultiResourceItemReader;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
+import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.batch.item.file.transform.FieldExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -60,7 +62,6 @@ public class SegmentedDataJob {
 		return filenames;
 	}
 
-	@Bean
 	public MultiResourceItemReader<GDCSegmentedData> extractData(String project_id) {
 
 		String [] filenames = gdcRESTAPI(project_id);
@@ -109,6 +110,12 @@ public class SegmentedDataJob {
 		};
 	}
 
+	public FieldExtractor<CBioSegmentedData> createFieldExtractor(){
+		BeanWrapperFieldExtractor<CBioSegmentedData> ext = new BeanWrapperFieldExtractor<>();
+		ext.setNames(new String[]{"id", "chromosome", "start", "end","num_mark","seg_mean"});
+		return  ext;
+	}
+
 
 	@Bean
 	public FlatFileItemWriter<CBioSegmentedData> segmentedDataWriter() {
@@ -121,8 +128,10 @@ public class SegmentedDataJob {
 
 		DelimitedLineAggregator<CBioSegmentedData> lineAggregator = new DelimitedLineAggregator<>();
 		lineAggregator.setDelimiter("\t");
+		FieldExtractor<CBioSegmentedData> fe = createFieldExtractor();
+		lineAggregator.setFieldExtractor(fe);
 		dataWriter.setLineAggregator(lineAggregator);
-		dataWriter.setResource(new FileSystemResource("/data/cBioPortal/birc_tcga_data_cna.seg"));
+		dataWriter.setResource(new FileSystemResource("/Users/Dixit/Documents/GSoC/github/cBioPortal-GSoC/sampleBatchDemo/src/main/resources/data/cBioPortal/birc_tcga_data_cna.seg"));
 
 		return dataWriter;
 
@@ -135,7 +144,7 @@ public class SegmentedDataJob {
 	public Step extractAndTransformStep() {
 		return stepBuilderFactory.get("extractAndTransformStep")
 				.<GDCSegmentedData, CBioSegmentedData>chunk(100)
-				.reader(extractData("GDC"))
+				.reader(extractData("TCGA-BIRC"))
 				.processor(processSegmentedData())
 				.writer(segmentedDataWriter())
 				.build();

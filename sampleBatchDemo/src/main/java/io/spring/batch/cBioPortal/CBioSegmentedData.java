@@ -11,6 +11,29 @@ public class CBioSegmentedData {
     private  long num_mark;
     private  long seg_mean;
 
+    public String getId() {
+        return id;
+    }
+
+    public long getChromosome() {
+        return chromosome;
+    }
+
+    public long getStart() {
+        return start;
+    }
+
+    public long getEnd() {
+        return end;
+    }
+
+    public long getNum_mark() {
+        return num_mark;
+    }
+
+    public long getSeg_mean() {
+        return seg_mean;
+    }
 
     public void setId(String id) {
         this.id = id;
