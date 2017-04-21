@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.spring.batch</groupId>
-	<artifactId>multiple-flat-files</artifactId>
+	<artifactId>sample-batch</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>multipleFlatFiles</name>
+	<name>sampleBatch</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
